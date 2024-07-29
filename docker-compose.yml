@@ -1,0 +1,6 @@
+﻿services:
+  deckbuilder.api:
+    image: deckbuilder.api
+    build:
+      context: .
+      dockerfile: DeckBuilder.Api/Dockerfile

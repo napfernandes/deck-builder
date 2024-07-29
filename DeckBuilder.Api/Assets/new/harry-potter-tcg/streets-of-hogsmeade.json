@@ -1,0 +1,1875 @@
+[
+  {
+    "id": "66a7a367119851f38d212ade",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Dervish and Banges",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "dervish-and-banges",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "When you play this card, discard any other Location from play (yours or an opponent's). Once during each player's turn, when they discard 1 of their Items from play, they may choose a non-Healing Item in their discard pile with printed Power cost less than the discarded Item's and put it into their hand.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘Dervish and Banges, the wizarding equipment shop ...’",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "dakotahblackart",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "note",
+        "value": "When you play this card, discard any other Location from play (yours or your opponent's).",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Rare",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "rare",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Transfiguration",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "transfiguration",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "4",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "2",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Hogsmeade",
+          "Unique"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212adf",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Hogsmeade Station",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "hogsmeade-station",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "When you play this card, discard any other Location from play (yours or an opponent's). When either player uses an Action to play a card with a printed Power cost, their cards require 2 less Power to play until the end of their turn. (They must still have at least 1 Power that matches.)",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Megan Renae",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "note",
+        "value": "When you play this card, discard any other Location from play (yours or your opponent's).",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Rare",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "rare",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Quidditch",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "quidditch",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "5",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "2",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "2",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Hogsmeade",
+          "Unique"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae0",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Honeydukes",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "honeydukes",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "When you play this card, discard any other Location from play (yours or an opponent's). Whenever a player uses an Action to play a Candy card from their hand, they may play another Candy card from their discard pile without using an Action.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘“We’ll bring you lots of sweets back from Honeydukes,” said Hermione, looking desperately sorry for him.’",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "ZeldaPitwick66",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "note",
+        "value": "When you play this card, discard any other Location from play (yours or your opponent's).",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Rare",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "rare",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Charms",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "charms",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "5",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "2",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "3",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Hogsmeade",
+          "Unique"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae1",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Madam Rosmerta",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "madam-rosmerta",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "The first time you would draw any number of cards each turn, you may instead put that many non-Healing cards from your discard pile on the bottom of your deck in any order.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘A curvy sort of woman with a pretty face was serving a bunch of rowdy warlocks up at the bar.’",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Sophia Del Plato",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Character",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "character",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Rare",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "rare",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "2",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "4",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Unique",
+          "Healing",
+          "Witch",
+          "Hogsmeade"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae2",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Comet Two Ninety",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "comet-two-ninety",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "When this card is discarded from play, draw 3 cards. <i>(When you play this card, discard the other Broom(s) you control.)</i>",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Emmanuel Oquendo",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Item",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "item",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Quidditch",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "quidditch",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "4",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "5",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "providesLesson",
+        "value": "Quidditch",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Broom"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae3",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Dissendium",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "dissendium",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "Play this card only if a non-Hogsmeade Location is in play. Search your deck. You may take a Hogsmeade Location from your deck and put it into play. Then shuffle your deck.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "'“See you in Honeydukes,” said George, winking.’",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Mary GrandPré",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Vertical",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Transfiguration",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "transfiguration",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "4",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "6",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae4",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "On the Hogwarts Express",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "on-the-hogwarts-express",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "When you play this card, choose a card type. Whenever you use an Action to play the second card of the chosen type in a turn, you get 1 more Action this turn.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘ ... they were boarding the Hogwarts Express; talking and laughing as the countryside became greener and tidier ...’",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Vladislav Pantic",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Event",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "event",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Quidditch",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "quidditch",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "5",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "7",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Unique"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae5",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "The Shrieking Shack",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "the-shrieking-shack",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "When you play this card, discard any other Location from play (yours or an opponent's). Before each player's turn, they take 4 damage.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘Paper was peeling from the walls; there were stains all over the floor; every piece of furniture was broken as though somebody had smashed it.’",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Olga Zvozdetska",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "note",
+        "value": "When you play this card, discard any other Location from play (yours or your opponent's).",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Care of Magical Creatures",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "care-of-magical-creatures",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "4",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "2",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "8",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Hogsmeade",
+          "Unique"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae6",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "The Three Broomsticks Inn",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "the-three-broomsticks-inn",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "When you play this card, discard any other Location from play (yours or an opponent's). At the end of each player's turn, if they put any number of cards into their deck from play, their hand, or their discard pile, they may prevent up to 4 damage done to them during their opponent's next turn.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘“Shall we go for a butterbeer in the Three Broomsticks?”’ — Ron Weasley",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Mary GrandPré",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "note",
+        "value": "When you play this card, discard any other Location from play (yours or your opponent's).",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "location",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "uncommon",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Potions",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "potions",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "5",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "2",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "9",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Unique",
+          "Hogsmeade"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae7",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Acid Pop",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "acid-pop",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "Choose an opponent's Creature in play and do 2 damage to it. Then draw a card.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "\"'Fred gave me one of those when I was secen - it burnt a hole right through my tongue.'\" - Ron Weasley",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "TonyBWizardly",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Vertical",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Charms",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "charms",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "10",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Candy"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae8",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Broken Item",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "broken-item",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "To play this card, choose one of your Items in play. This card requires less Power to play equal to the chosen Item's printed Power cost. When you play this card, discard the chosen Item from play. Then, draw a card.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Sarcone",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Item",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "item",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Transfiguration",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "transfiguration",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "12",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "11",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212ae9",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Butterbeer",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "butterbeer",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "Choose up to 2 non-Healing cards in your discard pile and put them on the top of your deck in any order. Until the beginning of your next turn, you may not draw cards.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘“Butterbeer! Yeah, I like that stuff!”’ — Harry Potter",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Poiv",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Vertical",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Potions",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "potions",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "4",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "12",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Healing"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212aea",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Haunting Screams",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "haunting-screams",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "To play this card, discard 1 of your <img class=\"v-mid card-text-lesson\" src=\"/images/lessons/care-of-magical-creatures.svg\"> Lessons from play. Count the number of Creatures in your discard pile. Do half that much damage to your opponent, rounded up.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘“The villagers heard the noise and the screaming and thought they were hearing particularly violent spirits.”’ — Professor Remus Lupin",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "Danikatze",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Vertical",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Care of Magical Creatures",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "care-of-magical-creatures",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "7",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "13",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212aeb",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Permission Form",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "permission-form",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "Reveal your hand, then put a Lesson from your hand into play. You get 1 more Action this turn.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "\"‘“Please give the enclosed permission form to your parent or guardian to sign.”’ — Professor McGonagall\"",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "CaptainJackHarkness",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Vertical",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Charms",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "charms",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "3",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "14",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212aec",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Toothflossing Stringmints",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "toothflossing-stringmints",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "Put up to 3 non-Healing cards from your discard pile on the bottom of your deck in any order. Then draw a card.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘“Mum and Dad would really love those Toothflossing Stringmints from Honeydukes!”’ — Hermione Granger",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "mechinism",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Vertical",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "spell",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Potions",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "potions",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "3",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "15",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Healing",
+          "Candy"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  },
+  {
+    "id": "66a7a367119851f38d212aed",
+    "gameId": "55d2437cef13be2c52c0c9b1",
+    "language": "en",
+    "attributes": [
+      {
+        "key": "name",
+        "value": "Werewolf",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "code",
+        "value": "werewolf",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "text",
+        "value": "When you play this card, you may discard 1 of your <img class=\"v-mid card-text-lesson\" src=\"/images/lessons/care-of-magical-creatures.svg\"> Lessons from play. If you do, this card does 5 damage to an opponent.",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "flavorText",
+        "value": "‘ ... the werewolf reared, snapping its long jaws ...’",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "illustrator",
+        "value": "maryquize",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "orientation",
+        "value": "Horizontal",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "set",
+        "value": "Streets of Hogsmeade",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "setCode",
+        "value": "soh",
+        "searchable": "true",
+        "visible": "false"
+      },
+      {
+        "key": "type",
+        "value": "Creature",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "typeCode",
+        "value": "creature",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarity",
+        "value": "Common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "rarityCode",
+        "value": "common",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonType",
+        "value": "Care of Magical Creatures",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonTypeCode",
+        "value": "care-of-magical-creatures",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "lessonCost",
+        "value": "5",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "actionCost",
+        "value": "1",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "cardNumber",
+        "value": "16",
+        "searchable": "true",
+        "visible": "true"
+      },
+      {
+        "key": "subType",
+        "values": [
+          "Werewolf"
+        ],
+        "searchable": "true",
+        "visible": "true"
+      }
+    ]
+  }
+]
