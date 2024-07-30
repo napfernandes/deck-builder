@@ -17,6 +17,13 @@ public static class DeckRoutes
             .WithDescription("Get all decks registered in the platform")
             .WithOpenApi();
         
+        decks
+            .MapGet("/{deckId}", async (string deckId, DeckService service, CancellationToken cancellationToken) =>
+                await service.GetDeckById(deckId, cancellationToken))
+            .WithName("getDeckById")
+            .WithDescription("Get a registered deck by its ID")
+            .WithOpenApi();
+        
         decks.MapPost("", async ([FromBody] CreateDeckInput input, DeckCreationService service, CancellationToken cancellationToken)
                 => await service.CreateDeck(input, cancellationToken))
             .WithName("createDeck")

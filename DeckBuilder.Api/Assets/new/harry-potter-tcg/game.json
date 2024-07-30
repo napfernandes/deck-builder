@@ -2,5 +2,12 @@
   "id": "55d2437cef13be2c52c0c9b1",
   "name": "harry-potter-tcg",
   "description": "Harry Potter TCG",
-  "numberOfCards": 770
+  "numberOfCards": 770,
+  "rules": {
+    "minimumNumberOfTotalCards": 5,
+    "maximumNumberOfCopies": 4,
+    "noMaximumNumberOfCopies": {
+      "type": "lesson"
+    }
+  }
 }

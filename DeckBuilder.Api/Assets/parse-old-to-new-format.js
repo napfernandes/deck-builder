@@ -51,6 +51,7 @@ function convertOldToNewFormat(oldObject, gameId) {
         key: 'code',
         value: oldObject.detail?.name
             .toLowerCase()
+            .replace('\'', '')
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, ''),
         searchable: "true",

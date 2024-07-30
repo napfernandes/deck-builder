@@ -20,10 +20,10 @@ public class CardService(IMongoDatabase database)
 
     public async Task<CardOutput> GetCardById(string cardId, CancellationToken cancellationToken)
     {
-        var pipeline = new BsonDocument[]
+        var pipeline = new[]
         {
-            new("$match", CardServiceDocumentHelpers.MatchById(cardId)),
-            new("$project", CardServiceDocumentHelpers.ProjectCard())
+            CardServiceDocumentHelpers.MatchById(cardId),
+            CardServiceDocumentHelpers.ProjectCardWithDetails()
         };
 
         var result = await _collection
@@ -40,12 +40,31 @@ public class CardService(IMongoDatabase database)
         if (!string.IsNullOrWhiteSpace(query))
         {
             var regex = new Regex(query, RegexOptions.IgnoreCase);
-            collection = collection.Where(c => c.Attributes.Any(a => a.Searchable && regex.IsMatch(a.Value)));
+            collection = collection.Where(c =>
+                c.Attributes.Any(a => a.Searchable &&
+                   a.Values != null && a.Values.Any() ?
+                    a.Values.Any(v => regex.IsMatch(v))
+                    : regex.IsMatch(a.Value!)));
         }
 
         var result = await collection.ToListAsync(cancellationToken);
 
         return result.Select(c => c.ToCardOutput());
+    }
+    
+    public async Task<IEnumerable<CardOutput>> GetCardDetailsByIds(IEnumerable<string> cardIds, CancellationToken cancellationToken)
+    {
+        var pipeline = new[]
+        {
+            CardServiceDocumentHelpers.MatchIdsInArray(cardIds),
+            CardServiceDocumentHelpers.ProjectCardWithDetails()
+        };
+
+        var results = await _collection
+            .Aggregate<BsonDocument>(pipeline, cancellationToken: cancellationToken)
+            .ToListAsync(cancellationToken);
+
+        return results.Select(c => BsonSerializer.Deserialize<CardOutput>(c.ToBsonDocument()));
     }
 }
 
@@ -55,39 +74,68 @@ public static class CardServiceDocumentHelpers
     {
         return new BsonDocument
         {
-            { "_id", new ObjectId(cardId) }
+            {
+                "$match", new BsonDocument
+                {
+                    { "_id", new ObjectId(cardId) }
+                }
+            }
         };
     }
 
-    public static BsonDocument ProjectCard()
+    public static BsonDocument MatchIdsInArray(IEnumerable<string> cardIds)
     {
         return new BsonDocument
         {
-            { "_id", 1 },
-            { "language", 1 },
             {
-                "attributes", new BsonDocument("$arrayToObject", new BsonDocument("$map", new BsonDocument
+                "$match", new BsonDocument
                 {
-                    { "input", "$attributes" },
-                    { "as", "attr" },
                     {
-                        "in", new BsonArray
+                        "_id", new BsonDocument
                         {
-                            new BsonDocument("$toString", "$$attr.key"),
-                            new BsonDocument("$cond", new BsonDocument
-                            {
-                                { "if", new BsonDocument("$eq", new BsonArray
-                                    {
-                                        new BsonDocument("$size", "$$attr.values"),
-                                        0
-                                    })
-                                },
-                                { "then", "$$attr.value" },
-                                { "else", "$$attr.values" }
-                            })
+                            { "$in", new BsonArray(cardIds.Select(id => new ObjectId(id))) }
                         }
                     }
-                }))
+                }
+            }
+        };
+    }
+    
+    public static BsonDocument ProjectCardWithDetails()
+    {
+        return new BsonDocument
+        {
+            {
+                "$project", new BsonDocument
+                {
+                    { "_id", 1 },
+                    { "language", 1 },
+                    {
+                        "attributes", new BsonDocument("$arrayToObject", new BsonDocument("$map", new BsonDocument
+                        {
+                            { "input", "$attributes" },
+                            { "as", "attr" },
+                            {
+                                "in", new BsonArray
+                                {
+                                    new BsonDocument("$toString", "$$attr.key"),
+                                    new BsonDocument("$cond", new BsonDocument
+                                    {
+                                        {
+                                            "if", new BsonDocument("$eq", new BsonArray
+                                            {
+                                                new BsonDocument("$size", "$$attr.values"),
+                                                0
+                                            })
+                                        },
+                                        { "then", "$$attr.value" },
+                                        { "else", "$$attr.values" }
+                                    })
+                                }
+                            }
+                        }))
+                    }
+                }
             }
         };
     }

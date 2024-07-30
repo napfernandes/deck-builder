@@ -6,6 +6,5 @@ public record CreateDeckInput
 {
     public string Title { get; init; } = string.Empty;
     public string Description { get; init; } = string.Empty;
-    public string CreatedBy { get; init; } = string.Empty;
     public IEnumerable<DeckCard> Cards { get; init; } = [];
 }

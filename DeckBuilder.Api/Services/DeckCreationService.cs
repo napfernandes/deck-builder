@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace DeckBuilder.Api.Services;
 
-public class DeckCreationService(IMongoDatabase database)
+public class DeckCreationService(IMongoDatabase database, CardService cardService)
 {
     private readonly IMongoCollection<Deck> _collection = database.GetCollection<Deck>(Collections.Decks);
 
@@ -31,11 +31,19 @@ public class DeckCreationService(IMongoDatabase database)
     public async Task<string> CreateDeck(CreateDeckInput input, CancellationToken cancellationToken)
     {
         ValidateDeckCreation(input);
+
+        var cards = await cardService.GetCardDetailsByIds(input.Cards.Select(c => c.CardId), cancellationToken);
         
         var newDeck = new Deck
         {
             Title = input.Title,
-            Cards = input.Cards,
+            Cards = input.Cards.Select(card => new DeckCard
+            {
+                Notes = card.Notes,
+                CardId = card.CardId,
+                Quantity = card.Quantity,
+                Details = cards.Single(c => c.Id == card.CardId).Attributes
+            }),
             CreatedBy = ObjectId.GenerateNewId().ToString(),
             CreatedAt = DateTime.UtcNow,
             Description = input.Description
