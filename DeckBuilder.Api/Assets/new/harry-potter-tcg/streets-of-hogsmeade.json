@@ -1,6 +1,6 @@
 [
   {
-    "id": "66a93339574a18e4135f5b41",
+    "id": "66ab6eec2982eff57de44259",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -42,7 +42,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -124,7 +124,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b42",
+    "id": "66ab6eec2982eff57de4425a",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -160,7 +160,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -242,7 +242,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b43",
+    "id": "66ab6eec2982eff57de4425b",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -284,7 +284,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -366,7 +366,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b44",
+    "id": "66ab6eec2982eff57de4425c",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -402,7 +402,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -468,7 +468,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b45",
+    "id": "66ab6eec2982eff57de4425d",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -498,7 +498,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -585,7 +585,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b46",
+    "id": "66ab6eec2982eff57de4425e",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -621,7 +621,7 @@
       },
       {
         "key": "orientation",
-        "value": "Vertical",
+        "value": "vertical",
         "searchable": "true",
         "visible": "true"
       },
@@ -700,7 +700,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b47",
+    "id": "66ab6eec2982eff57de4425f",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -736,7 +736,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -817,7 +817,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b48",
+    "id": "66ab6eec2982eff57de44260",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -859,7 +859,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -941,7 +941,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b49",
+    "id": "66ab6eec2982eff57de44261",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -983,7 +983,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -1065,7 +1065,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b4a",
+    "id": "66ab6eec2982eff57de44262",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -1101,7 +1101,7 @@
       },
       {
         "key": "orientation",
-        "value": "Vertical",
+        "value": "vertical",
         "searchable": "true",
         "visible": "true"
       },
@@ -1182,7 +1182,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b4b",
+    "id": "66ab6eec2982eff57de44263",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -1212,7 +1212,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },
@@ -1291,7 +1291,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b4c",
+    "id": "66ab6eec2982eff57de44264",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -1327,7 +1327,7 @@
       },
       {
         "key": "orientation",
-        "value": "Vertical",
+        "value": "vertical",
         "searchable": "true",
         "visible": "true"
       },
@@ -1408,7 +1408,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b4d",
+    "id": "66ab6eec2982eff57de44265",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -1444,7 +1444,7 @@
       },
       {
         "key": "orientation",
-        "value": "Vertical",
+        "value": "vertical",
         "searchable": "true",
         "visible": "true"
       },
@@ -1523,7 +1523,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b4e",
+    "id": "66ab6eec2982eff57de44266",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -1559,7 +1559,7 @@
       },
       {
         "key": "orientation",
-        "value": "Vertical",
+        "value": "vertical",
         "searchable": "true",
         "visible": "true"
       },
@@ -1638,7 +1638,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b4f",
+    "id": "66ab6eec2982eff57de44267",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -1674,7 +1674,7 @@
       },
       {
         "key": "orientation",
-        "value": "Vertical",
+        "value": "vertical",
         "searchable": "true",
         "visible": "true"
       },
@@ -1756,7 +1756,7 @@
     ]
   },
   {
-    "id": "66a93339574a18e4135f5b50",
+    "id": "66ab6eec2982eff57de44268",
     "gameId": "55d2437cef13be2c52c0c9b1",
     "language": "en",
     "attributes": [
@@ -1792,7 +1792,7 @@
       },
       {
         "key": "orientation",
-        "value": "Horizontal",
+        "value": "horizontal",
         "searchable": "true",
         "visible": "true"
       },

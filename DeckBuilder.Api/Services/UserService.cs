@@ -27,7 +27,7 @@ public class UserService(IMongoDatabase database, JwtConfiguration jwtConfigurat
         return Convert.ToBase64String(hashBytes);
     }
     
-    public async Task<string> CreateUser(CreateUserInput input, CancellationToken cancellationToken)
+    public async ValueTask<string> CreateUser(CreateUserInput input, CancellationToken cancellationToken)
     {
         var existingUser = await _collection.AsQueryable()
             .FirstOrDefaultAsync(u => Equals(u.Email, input.Email), cancellationToken);
@@ -53,7 +53,7 @@ public class UserService(IMongoDatabase database, JwtConfiguration jwtConfigurat
         return user.Id;
     }
 
-    public async Task<string> LoginWithCredentails(CredentialsInput input, CancellationToken cancellationToken)
+    public async ValueTask<string> LoginWithCredentails(CredentialsInput input, CancellationToken cancellationToken)
     {
         var existingUser = await _collection
             .AsQueryable()
@@ -71,5 +71,10 @@ public class UserService(IMongoDatabase database, JwtConfiguration jwtConfigurat
         var authTokenInput = new AuthTokenInput(existingUser.Email, existingUser.FullName);
         
         return TokenService.GenerateAuthToken(authTokenInput, jwtConfiguration);
+    }
+    
+    public async ValueTask<IEnumerable<User>> SearchUsers(CancellationToken cancellationToken)
+    {
+        return await _collection.AsQueryable().ToListAsync(cancellationToken);
     }
 }

@@ -2,26 +2,26 @@ using DeckBuilder.Api.Enums;
 
 namespace DeckBuilder.Api.Exceptions;
 
-public class KnownException(string message, string code, Exception? exception = null)
+public class KnownException(string message, int statusCode, Exception? exception = null)
     : Exception(message, exception)
 {
-    public string Code => code;
+    public int StatusCode => statusCode;
 
     public static KnownException ImportFileNotFound(string filePath, Exception? exception = null)
     {
-        return new KnownException($"File not found on path \"{filePath}\".", ErrorCodes.ImportFileNotFound, exception);
+        return new KnownException($"File not found on path \"{filePath}\".", StatusCodes.Status404NotFound, exception);
     }
 
     public static KnownException CardsAlreadyImported(Exception? exception = null)
     {
-        return new KnownException("Cards were already imported.", ErrorCodes.CardsAlreadyImported, exception);
+        return new KnownException("Cards were already imported.", StatusCodes.Status400BadRequest, exception);
     }
     
     public static KnownException MinimumNumberOfCardsInDeck(int minimumNumberOfCards, Exception? exception = null)
     {
         return new KnownException(
             $"Your deck should contain at least {minimumNumberOfCards} cards.",
-            ErrorCodes.MinimumNumberOfCardsInDeck,
+            StatusCodes.Status422UnprocessableEntity,
             exception);
     }
     
@@ -29,7 +29,7 @@ public class KnownException(string message, string code, Exception? exception = 
     {
         return new KnownException(
             $"You must specify a quantity of cards for {cardId}.",
-            ErrorCodes.NoQuantityForDeckCard,
+            StatusCodes.Status422UnprocessableEntity,
             exception);
     }
     
@@ -37,7 +37,7 @@ public class KnownException(string message, string code, Exception? exception = 
     {
         return new KnownException(
             $"There are {numberOfCards} card(s) exceeding the maximum amount of {maximumAmount} copies.",
-            ErrorCodes.NumberOfCardsExceedingAmount,
+            StatusCodes.Status422UnprocessableEntity,
             exception);
     }
 
@@ -45,17 +45,27 @@ public class KnownException(string message, string code, Exception? exception = 
     {
         return new KnownException(
             $"User already exists ({email})",
-            ErrorCodes.UserAlreadyExists,
+            StatusCodes.Status409Conflict,
             exception);
     }
 
     public static KnownException InvalidCredentials(Exception? exception = null)
     {
-        return new KnownException("Invalid credentials.", ErrorCodes.InvalidCredentials, exception);
+        return new KnownException("Invalid credentials.", StatusCodes.Status400BadRequest, exception);
     }
     
     public static KnownException DeckNotFound(string deckId, Exception? exception = null)
     {
-        return new KnownException($"Deck not found ({deckId}).", ErrorCodes.InvalidCredentials, exception);
+        return new KnownException($"Deck not found ({deckId}).", StatusCodes.Status404NotFound, exception);
+    }
+    
+    public static KnownException CardNotFoundById(string cardId, Exception? exception = null)
+    {
+        return new KnownException($"Card not found ({cardId}).", StatusCodes.Status404NotFound, exception);
+    }
+    
+    public static KnownException CardNotFoundBySetAndCode(string setCode, string code, Exception? exception = null)
+    {
+        return new KnownException($"Card not found ({setCode}, {code}).", StatusCodes.Status404NotFound, exception);
     }
 }

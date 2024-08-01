@@ -8,30 +8,31 @@ public static class CardRoutes
 {
     public static void RegisterCardEndpoints(this IEndpointRouteBuilder routes)
     {
-        var users = routes.MapGroup("/api/v1/cards");
+        var cards = routes.MapGroup("/api/v1/cards");
 
-        users
+        cards
             .MapGet("/", async ([FromQuery] string? query, CardService service, CancellationToken cancellationToken) =>
                 await service.SearchCards(query, cancellationToken))
             .WithName("getAllCards")
             .WithDescription("Get all cards")
             .WithOpenApi();
 
-        users.MapGet("/count",
+        cards
+            .MapGet("/count",
                 async (CardService service, CancellationToken cancellationToken) =>
                     await service.CountNumberOfCards(cancellationToken))
             .WithName("countCards")
             .WithDescription("Counting all cards")
             .WithOpenApi();
 
-        users
+        cards
             .MapGet("/{cardId}", async (string cardId, CardService service, CancellationToken cancellationToken) =>
                 await service.GetCardById(cardId, cancellationToken))
             .WithName("getCardById")
             .WithDescription("Get a card by its ID")
             .WithOpenApi();
 
-        users
+        cards
             .MapPost("/import", async (CardService cardService, ImportService importService, CancellationToken cancellationToken) =>
             {
                 var numberOfCards = await cardService.CountNumberOfCards(cancellationToken);
@@ -45,7 +46,7 @@ public static class CardRoutes
             .WithDescription("Import cards data into the system")
             .WithOpenApi();
 
-        users
+        cards
             .MapDelete("/import",
                 async (ImportService service, CancellationToken cancellationToken) =>
                 {

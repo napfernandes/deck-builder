@@ -1,6 +1,18 @@
-﻿services:
+﻿version: '3.8'
+
+services:
   deckbuilder.api:
     image: deckbuilder.api
     build:
       context: .
       dockerfile: DeckBuilder.Api/Dockerfile
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27999:27017'
+    volumes:
+      - deck-builder-data:/data/db
+
+volumes:
+  deck-builder-data:

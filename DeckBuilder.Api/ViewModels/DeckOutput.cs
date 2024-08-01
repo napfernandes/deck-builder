@@ -12,7 +12,10 @@ public record DeckOutput
     
     [BsonElement("title")]
     public string Title { get; init; } = string.Empty;
-    
+
+    [BsonElement("gameId")]
+    public string GameId { get; init; } = string.Empty;
+
     [BsonElement("description")]
     public string Description { get; init; } = string.Empty;
     

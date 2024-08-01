@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using DeckBuilder.Api.Enums;
+using DeckBuilder.Api.Exceptions;
 using DeckBuilder.Api.Models;
 using DeckBuilder.Api.ViewModels;
 using MongoDB.Bson;
@@ -30,9 +31,45 @@ public class CardService(IMongoDatabase database)
             .Aggregate<BsonDocument>(pipeline, cancellationToken: cancellationToken)
             .FirstOrDefaultAsync(cancellationToken);
         
+        if (result is null)
+            throw KnownException.CardNotFoundById(cardId);
+
         return BsonSerializer.Deserialize<CardOutput>(result.ToBsonDocument());
     }
 
+    public async Task<CardOutput> GetCardBySetAndCode(string setCode, string code, CancellationToken cancellationToken)
+    {
+        var pipeline = new[]
+        {
+            CardServiceDocumentHelpers.MatchBySetCodeAndCode(setCode, code),
+            CardServiceDocumentHelpers.ProjectCardWithDetails()
+        };
+        
+        var result = await _collection
+            .Aggregate<BsonDocument>(pipeline, cancellationToken: cancellationToken)
+            .FirstOrDefaultAsync(cancellationToken);
+        
+        if (result is null)
+            throw KnownException.CardNotFoundBySetAndCode(setCode, code);
+        
+        return BsonSerializer.Deserialize<CardOutput>(result.ToBsonDocument());
+    }
+
+    public async Task<IEnumerable<CardOutput>> GetCardsBySet(string setCode, CancellationToken cancellationToken)
+    {
+        var pipeline = new[]
+        {
+            CardServiceDocumentHelpers.MatchBySet(setCode),
+            CardServiceDocumentHelpers.ProjectCardWithDetails()
+        };
+        
+        var results = await _collection
+            .Aggregate<BsonDocument>(pipeline, cancellationToken: cancellationToken)
+            .ToListAsync(cancellationToken);
+        
+        return results.Select(c => BsonSerializer.Deserialize<CardOutput>(c.ToBsonDocument()));
+    }
+    
     public async Task<IEnumerable<CardOutput>> SearchCards(string? query, CancellationToken cancellationToken)
     {
         var collection = _collection.AsQueryable();
@@ -83,6 +120,42 @@ public static class CardServiceDocumentHelpers
         };
     }
 
+    public static BsonDocument MatchBySetCodeAndCode(string setCode, string code)
+    {
+        return new BsonDocument("$match", new BsonDocument
+        {
+            {
+                "$and", new BsonArray
+                {
+                    new BsonDocument
+                    {
+                        { "attributes.key", "setCode" },
+                        { "attributes.value", setCode }
+                    },
+                    new BsonDocument
+                    {
+                        { "attributes.key", "code" },
+                        { "attributes.value", code }
+                    }
+                }
+            }
+        });
+    }
+    
+    public static BsonDocument MatchBySet(string setCode)
+    {
+        return new BsonDocument
+        {
+            {
+                "$match", new BsonDocument
+                {
+                    { "attributes.key", "setCode" },
+                    { "attributes.value", setCode }
+                }
+            }
+        };
+    }
+    
     public static BsonDocument MatchIdsInArray(IEnumerable<string> cardIds)
     {
         return new BsonDocument

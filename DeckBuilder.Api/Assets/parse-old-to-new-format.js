@@ -7,13 +7,6 @@ const oldDirectories = fs.readdirSync(oldPath);
 
 for (const oldDirectory of oldDirectories) {
     const newDirectory = `${newPath}/${oldDirectory}`;
-    
-    if (fs.existsSync(newDirectory)) {
-        fs.rmSync(newDirectory, { recursive: true });    
-    }
-    
-    fs.mkdirSync(newDirectory);
-    
     const oldFiles = fs.readdirSync(`${oldPath}/${oldDirectory}`);
     const cardFiles = oldFiles.filter(f => !f.includes('game.json') && !f.includes('images'));
     const gameFilePath = `${newPath}/${oldDirectory}/game.json`;
@@ -28,7 +21,7 @@ for (const oldDirectory of oldDirectories) {
     
     for (const oldFileName of cardFiles) {
         const fileContent = fs.readFileSync(`${oldPath}/${oldDirectory}/${oldFileName}`, 'utf-8');
-        const newFilePath = `${newPath}/${oldDirectory}/${oldFileName}`;
+        const newFilePath = `${newDirectory}/${oldFileName}`;
 
         if (fs.existsSync(newFilePath)) {
             fs.rmSync(newFilePath);
@@ -97,7 +90,7 @@ function convertOldToNewFormat(oldObject, gameId) {
         visible: "true",
     }, {
         key: 'orientation',
-        value: oldObject.detail?.orientation,
+        value: oldObject.detail?.orientation.toLowerCase(),
         searchable: "true",
         visible: "true",
     }, {

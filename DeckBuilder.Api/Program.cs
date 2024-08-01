@@ -1,4 +1,5 @@
 using DeckBuilder.Api.Configurations;
+using DeckBuilder.Api.Exceptions;
 using DeckBuilder.Api.Routes;
 using DeckBuilder.Api.Services;
 using Microsoft.Extensions.FileProviders;
@@ -43,6 +44,9 @@ builder.Services.AddScoped<IMongoDatabase>(_ =>
     return database;
 });
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policyBuilder =>
@@ -63,10 +67,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandler();
 app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
 
+app.RegisterSetEndpoints();
 app.RegisterCardEndpoints();
 app.RegisterDeckEndpoints();
 app.RegisterUserEndpoints();
