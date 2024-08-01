@@ -1071,13 +1071,13 @@
     "attributes": [
       {
         "key": "name",
-        "value": "Acid Pop",
+        "value": "Acid Pops",
         "searchable": "true",
         "visible": "true"
       },
       {
         "key": "code",
-        "value": "acid-pop",
+        "value": "acid-pops",
         "searchable": "true",
         "visible": "true"
       },
