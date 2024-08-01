@@ -28,13 +28,12 @@ public class DeckCreationService(IMongoDatabase database, CardService cardServic
             throw KnownException.NumberOfCardsExceedingAmount(numberOfCardsExceedingAmount, maxQuantityOfSameCard);
     }
     
-    public async Task<string> CreateDeck(CreateDeckInput input, CancellationToken cancellationToken)
+    public async ValueTask<CreateDeckOutput> CreateDeck(CreateDeckInput input, CancellationToken cancellationToken)
     {
         ValidateDeckCreation(input);
 
         var cards = await cardService.GetCardDetailsByIds(input.Cards.Select(c => c.CardId), cancellationToken);
-        
-        var newDeck = new Deck
+        var deck = new Deck
         {
             Title = input.Title,
             Cards = input.Cards.Select(card => new DeckCard
@@ -49,8 +48,8 @@ public class DeckCreationService(IMongoDatabase database, CardService cardServic
             Description = input.Description
         };
 
-        await _collection.InsertOneAsync(newDeck, null, cancellationToken);
+        await _collection.InsertOneAsync(deck, null, cancellationToken);
 
-        return newDeck.Id;
+        return new CreateDeckOutput(deck.Id);
     }
 }

@@ -13,14 +13,14 @@ public class DeckService(IMongoDatabase database)
 {
     private readonly IMongoCollection<Deck> _collection = database.GetCollection<Deck>(Collections.Decks);
     
-    public async Task<IEnumerable<DeckOutput>> SearchDecks(CancellationToken cancellationToken)
+    public async ValueTask<IEnumerable<DeckOutput>> SearchDecks(CancellationToken cancellationToken)
     {
         var result = await _collection.Aggregate().ToListAsync(cancellationToken);
 
         return result.Select(deck => BsonSerializer.Deserialize<DeckOutput>(deck.ToBsonDocument()));
     }
     
-    public async Task<DeckOutput> GetDeckById(string deckId, CancellationToken cancellationToken)
+    public async ValueTask<DeckOutput> GetDeckById(string deckId, CancellationToken cancellationToken)
     {
         var pipeline = new[]
         {

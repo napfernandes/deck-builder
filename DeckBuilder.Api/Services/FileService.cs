@@ -5,7 +5,7 @@ namespace DeckBuilder.Api.Services;
 
 public static class FileService
 {
-    public static async Task<T?> ReadFileAsJsonAsync<T>(string filePath, CancellationToken cancellationToken)
+    public static async ValueTask<T?> ReadFileAsJsonAsync<T>(string filePath, CancellationToken cancellationToken)
     {
         if (!File.Exists(filePath))
             throw KnownException.ImportFileNotFound(filePath);

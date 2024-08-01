@@ -9616,13 +9616,13 @@
     "attributes": [
       {
         "key": "name",
-        "value": "Trelawny Reading",
+        "value": "Trelawney's Reading",
         "searchable": "true",
         "visible": "true"
       },
       {
         "key": "code",
-        "value": "trelawny-reading",
+        "value": "trelawneys-reading",
         "searchable": "true",
         "visible": "true"
       },

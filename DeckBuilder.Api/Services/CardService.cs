@@ -14,12 +14,12 @@ public class CardService(IMongoDatabase database)
 {
     private readonly IMongoCollection<Card> _collection = database.GetCollection<Card>(Collections.Cards);
 
-    public async Task<int> CountNumberOfCards(CancellationToken cancellationToken)
+    public async ValueTask<int> CountNumberOfCards(CancellationToken cancellationToken)
     {
         return await _collection.AsQueryable().CountAsync(cancellationToken);
     }
 
-    public async Task<CardOutput> GetCardById(string cardId, CancellationToken cancellationToken)
+    public async ValueTask<CardOutput> GetCardById(string cardId, CancellationToken cancellationToken)
     {
         var pipeline = new[]
         {
@@ -37,7 +37,7 @@ public class CardService(IMongoDatabase database)
         return BsonSerializer.Deserialize<CardOutput>(result.ToBsonDocument());
     }
 
-    public async Task<CardOutput> GetCardBySetAndCode(string setCode, string code, CancellationToken cancellationToken)
+    public async ValueTask<CardOutput> GetCardBySetAndCode(string setCode, string code, CancellationToken cancellationToken)
     {
         var pipeline = new[]
         {
@@ -55,7 +55,7 @@ public class CardService(IMongoDatabase database)
         return BsonSerializer.Deserialize<CardOutput>(result.ToBsonDocument());
     }
 
-    public async Task<IEnumerable<CardOutput>> GetCardsBySet(string setCode, CancellationToken cancellationToken)
+    public async ValueTask<IEnumerable<CardOutput>> GetCardsBySet(string setCode, CancellationToken cancellationToken)
     {
         var pipeline = new[]
         {
@@ -70,7 +70,7 @@ public class CardService(IMongoDatabase database)
         return results.Select(c => BsonSerializer.Deserialize<CardOutput>(c.ToBsonDocument()));
     }
     
-    public async Task<IEnumerable<CardOutput>> SearchCards(string? query, CancellationToken cancellationToken)
+    public async ValueTask<IEnumerable<CardOutput>> SearchCards(string? query, CancellationToken cancellationToken)
     {
         var collection = _collection.AsQueryable();
 
@@ -89,7 +89,7 @@ public class CardService(IMongoDatabase database)
         return result.Select(c => c.ToCardOutput());
     }
     
-    public async Task<IEnumerable<CardOutput>> GetCardDetailsByIds(IEnumerable<string> cardIds, CancellationToken cancellationToken)
+    public async ValueTask<IEnumerable<CardOutput>> GetCardDetailsByIds(IEnumerable<string> cardIds, CancellationToken cancellationToken)
     {
         var pipeline = new[]
         {

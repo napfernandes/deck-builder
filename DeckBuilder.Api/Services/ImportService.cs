@@ -9,7 +9,7 @@ public class ImportService(IMongoDatabase database)
     private readonly IMongoCollection<Card> _cardsCollection = database.GetCollection<Card>(Collections.Cards);
     private readonly IMongoCollection<Game> _gamesCollection = database.GetCollection<Game>(Collections.Games);
     
-    public async Task ImportCardsFromAssets(CancellationToken cancellationToken)
+    public async ValueTask ImportCardsFromAssets(CancellationToken cancellationToken)
     {
         var gameFolders = Directory.GetDirectories("./Assets/new");
 
@@ -33,7 +33,7 @@ public class ImportService(IMongoDatabase database)
         );
     }
     
-    public async Task DeleteImportedData(CancellationToken cancellationToken)
+    public async ValueTask DeleteImportedData(CancellationToken cancellationToken)
     {
         await _cardsCollection.DeleteManyAsync(ExpressionFilterDefinition<Card>.Empty, cancellationToken);
         await _gamesCollection.DeleteManyAsync(ExpressionFilterDefinition<Game>.Empty, cancellationToken);
