@@ -18,6 +18,7 @@ public class Deck
     public string Description { get; init; } = string.Empty;
 
     [BsonElement("createdBy")]
+    [BsonRepresentation(BsonType.ObjectId)]
     public string CreatedBy { get; init; } = string.Empty;
 
     [BsonElement("createdAt")]

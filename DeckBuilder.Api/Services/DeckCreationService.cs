@@ -43,7 +43,7 @@ public class DeckCreationService(IMongoDatabase database, CardService cardServic
                 Quantity = card.Quantity,
                 Details = cards.Single(c => c.Id == card.CardId).Attributes
             }),
-            CreatedBy = ObjectId.GenerateNewId().ToString(),
+            CreatedBy = input.CreatedBy!,
             CreatedAt = DateTime.UtcNow,
             Description = input.Description
         };
