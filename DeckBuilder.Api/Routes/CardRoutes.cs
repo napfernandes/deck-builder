@@ -33,25 +33,15 @@ public static class CardRoutes
             .WithOpenApi();
 
         cards
-            .MapPost("/import", async (CardService cardService, ImportService importService, CancellationToken cancellationToken) =>
-            {
-                var numberOfCards = await cardService.CountNumberOfCards(cancellationToken);
-
-                if (numberOfCards > 0)
-                    throw KnownException.CardsAlreadyImported();
-
-                await importService.ImportCardsFromAssets(cancellationToken);
-            })
+            .MapPost("/import", async (ImportService importService, CancellationToken cancellationToken) =>
+                await importService.ImportCardsFromAssets(cancellationToken))
             .WithName("importCards")
             .WithDescription("Import cards data into the system")
             .WithOpenApi();
 
         cards
-            .MapDelete("/import",
-                async (ImportService service, CancellationToken cancellationToken) =>
-                {
-                    await service.DeleteImportedData(cancellationToken);
-                })
+            .MapDelete("/import", async (ImportService service, CancellationToken cancellationToken) =>
+                    await service.DeleteImportedData(cancellationToken))
             .WithName("deleteImportedCards")
             .WithDescription("Delete all cards from cards collection")
             .WithOpenApi();

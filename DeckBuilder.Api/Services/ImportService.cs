@@ -1,17 +1,23 @@
 using DeckBuilder.Api.Enums;
+using DeckBuilder.Api.Exceptions;
 using DeckBuilder.Api.Helpers;
 using DeckBuilder.Api.Models;
 using MongoDB.Driver;
 
 namespace DeckBuilder.Api.Services;
 
-public class ImportService(IMongoDatabase database)
+public class ImportService(IMongoDatabase database, CardService cardService)
 {
     private readonly IMongoCollection<Card> _cardsCollection = database.GetCollection<Card>(Collections.Cards);
     private readonly IMongoCollection<Game> _gamesCollection = database.GetCollection<Game>(Collections.Games);
     
     public async ValueTask ImportCardsFromAssets(CancellationToken cancellationToken)
     {
+        var numberOfCards = await cardService.CountNumberOfCards(cancellationToken);
+
+        if (numberOfCards > 0)
+            throw KnownException.CardsAlreadyImported();
+        
         var gameFolders = Directory.GetDirectories("./Assets/new");
 
         await Parallel.ForEachAsync(gameFolders, cancellationToken, async (directory, directoryCancellationToken) =>
