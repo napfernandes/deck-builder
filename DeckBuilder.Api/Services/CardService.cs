@@ -1,8 +1,10 @@
 using System.Text.RegularExpressions;
 using DeckBuilder.Api.Enums;
 using DeckBuilder.Api.Exceptions;
+using DeckBuilder.Api.Helpers;
 using DeckBuilder.Api.Models;
 using DeckBuilder.Api.ViewModels;
+using Microsoft.Extensions.Caching.Memory;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
@@ -16,11 +18,25 @@ public class CardService(IMongoDatabase database)
 
     public async ValueTask<int> CountNumberOfCards(CancellationToken cancellationToken)
     {
-        return await _collection.AsQueryable().CountAsync(cancellationToken);
+        var countResult = CacheManager.GetItem<int?>(CacheKeys.CountCards);
+
+        if (countResult.HasValue)
+            return countResult.Value;
+        
+        countResult = await _collection.AsQueryable().CountAsync(cancellationToken);
+        
+        CacheManager.SetItem(CacheKeys.CountCards, countResult, TimeSpan.FromSeconds(5));
+        return countResult.Value;
     }
 
     public async ValueTask<CardOutput> GetCardById(string cardId, CancellationToken cancellationToken)
     {
+        var cacheKey = CacheKeys.CardById(cardId);
+        var cardOutput = CacheManager.GetItem<CardOutput?>(cacheKey);
+
+        if (cardOutput is not null)
+            return cardOutput;
+        
         var pipeline = new[]
         {
             CardServiceDocumentHelpers.MatchById(cardId),
@@ -34,11 +50,20 @@ public class CardService(IMongoDatabase database)
         if (result is null)
             throw KnownException.CardNotFoundById(cardId);
 
-        return BsonSerializer.Deserialize<CardOutput>(result.ToBsonDocument());
+        var convertedResult = BsonSerializer.Deserialize<CardOutput>(result.ToBsonDocument());
+        CacheManager.SetItem(cacheKey, convertedResult);
+
+        return convertedResult;
     }
 
     public async ValueTask<CardOutput> GetCardBySetAndCode(string setCode, string code, CancellationToken cancellationToken)
     {
+        var cacheKey = CacheKeys.CardBySetAndCode(setCode, code);
+        var cardOutput = CacheManager.GetItem<CardOutput?>(cacheKey);
+
+        if (cardOutput is not null)
+            return cardOutput;
+        
         var pipeline = new[]
         {
             CardServiceDocumentHelpers.MatchBySetCodeAndCode(setCode, code),
@@ -52,11 +77,20 @@ public class CardService(IMongoDatabase database)
         if (result is null)
             throw KnownException.CardNotFoundBySetAndCode(setCode, code);
         
-        return BsonSerializer.Deserialize<CardOutput>(result.ToBsonDocument());
+        var convertedResult = BsonSerializer.Deserialize<CardOutput>(result.ToBsonDocument());
+        CacheManager.SetItem(cacheKey, convertedResult);
+
+        return convertedResult;
     }
 
     public async ValueTask<IEnumerable<CardOutput>> GetCardsBySet(string setCode, CancellationToken cancellationToken)
     {
+        var cacheKey = CacheKeys.CardsBySet(setCode);
+        var listOutput = CacheManager.GetItem<IEnumerable<CardOutput>>(cacheKey);
+
+        if (listOutput is not null)
+            return listOutput;
+
         var pipeline = new[]
         {
             CardServiceDocumentHelpers.MatchBySet(setCode),
@@ -67,11 +101,23 @@ public class CardService(IMongoDatabase database)
             .Aggregate<BsonDocument>(pipeline, cancellationToken: cancellationToken)
             .ToListAsync(cancellationToken);
         
-        return results.Select(c => BsonSerializer.Deserialize<CardOutput>(c.ToBsonDocument()));
+        var convertedList = results.Select(c => BsonSerializer.Deserialize<CardOutput>(c.ToBsonDocument()));
+        CacheManager.SetItem(cacheKey, convertedList);
+        
+        return convertedList;
     }
     
     public async ValueTask<IEnumerable<CardOutput>> SearchCards(string? query, CancellationToken cancellationToken)
     {
+        var cacheKey = query is not null ? CacheKeys.CardsSearchByQuery(query) : string.Empty;
+        if (query is not null)
+        {
+            var listOutput = CacheManager.GetItem<IEnumerable<CardOutput>>(cacheKey);
+
+            if (listOutput is not null)
+                return listOutput;
+        }
+        
         var collection = _collection.AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(query))
@@ -85,8 +131,12 @@ public class CardService(IMongoDatabase database)
         }
 
         var result = await collection.ToListAsync(cancellationToken);
+        var convertedList = result.Select(c => c.ToCardOutput());
+        
+        if (!string.IsNullOrWhiteSpace(cacheKey))
+            CacheManager.SetItem(cacheKey, convertedList);
 
-        return result.Select(c => c.ToCardOutput());
+        return convertedList;
     }
     
     public async ValueTask<IEnumerable<CardOutput>> GetCardDetailsByIds(IEnumerable<string> cardIds, CancellationToken cancellationToken)

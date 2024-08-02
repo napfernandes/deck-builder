@@ -1,4 +1,5 @@
 using DeckBuilder.Api.Enums;
+using DeckBuilder.Api.Helpers;
 using DeckBuilder.Api.Models;
 using MongoDB.Driver;
 
@@ -31,11 +32,14 @@ public class ImportService(IMongoDatabase database)
                     await _gamesCollection.InsertOneAsync(game, null, directoryCancellationToken);
             }
         );
+        
+        CacheManager.Clear();
     }
     
     public async ValueTask DeleteImportedData(CancellationToken cancellationToken)
     {
         await _cardsCollection.DeleteManyAsync(ExpressionFilterDefinition<Card>.Empty, cancellationToken);
         await _gamesCollection.DeleteManyAsync(ExpressionFilterDefinition<Game>.Empty, cancellationToken);
+        CacheManager.Clear();
     }
 }

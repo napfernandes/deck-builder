@@ -1,6 +1,7 @@
 using DeckBuilder.Api.Configurations;
 using DeckBuilder.Api.Enums;
 using DeckBuilder.Api.Exceptions;
+using DeckBuilder.Api.Helpers;
 using DeckBuilder.Api.Models;
 using DeckBuilder.Api.ViewModels;
 using MongoDB.Driver;
@@ -45,20 +46,50 @@ public class UserService(IMongoDatabase database, JwtConfiguration jwtConfigurat
             Password = EncryptPasswordForUser(input.Password, salt),
             Salt = Convert.ToBase64String(salt),
             CreatedAt = DateTime.Now,
-            Decks = input.Decks!
+            Decks = input.Decks
         };
         
         await _collection.InsertOneAsync(user, null, cancellationToken);
-
+        CacheManager.SetItem(CacheKeys.GetUserByEmail(user.Email), user);
+        
         return user.Id;
     }
 
-    public async ValueTask<string> LoginWithCredentails(CredentialsInput input, CancellationToken cancellationToken)
+    private async ValueTask<User> GetUserByEmail(string email, CancellationToken cancellationToken)
     {
+        var cacheKey = CacheKeys.GetUserByEmail(email);
+        var cachedUser = CacheManager.GetItem<User?>(cacheKey);
+
+        if (cachedUser is not null)
+            return cachedUser;
+        
         var existingUser = await _collection
             .AsQueryable()
-            .FirstOrDefaultAsync(u => Equals(u.Email, input.Email), cancellationToken);
+            .FirstOrDefaultAsync(u => Equals(u.Email, email), cancellationToken);
+    
+        CacheManager.SetItem(cacheKey, existingUser);
+        return existingUser;
+    }
+    
+    private async ValueTask<User> GetUserById(string userId, CancellationToken cancellationToken)
+    {
+        var cacheKey = CacheKeys.GetUserById(userId);
+        var cachedUser = CacheManager.GetItem<User?>(cacheKey);
 
+        if (cachedUser is not null)
+            return cachedUser;
+        
+        var existingUser = await _collection
+            .AsQueryable()
+            .FirstOrDefaultAsync(u => Equals(u.Id, userId), cancellationToken);
+    
+        CacheManager.SetItem(cacheKey, existingUser);
+        return existingUser;
+    }
+
+    public async ValueTask<string> LoginWithCredentials(CredentialsInput input, CancellationToken cancellationToken)
+    {
+        var existingUser = await GetUserByEmail(input.Email, cancellationToken);
         if (existingUser is null)
             throw KnownException.InvalidCredentials();
 
@@ -75,6 +106,22 @@ public class UserService(IMongoDatabase database, JwtConfiguration jwtConfigurat
     
     public async ValueTask<IEnumerable<User>> SearchUsers(CancellationToken cancellationToken)
     {
-        return await _collection.AsQueryable().ToListAsync(cancellationToken);
+        var listOutput = CacheManager.GetItem<IEnumerable<User>>(CacheKeys.UsersList);
+        if (listOutput is not null)
+            return listOutput;
+        
+        var result = await _collection.AsQueryable().ToListAsync(cancellationToken);
+        CacheManager.SetItem(CacheKeys.UsersList, result);
+
+        return result;
+    }
+
+    public async ValueTask<bool> AddDeckToUser(string userId, string deckId, CancellationToken cancellationToken)
+    {
+        var filter = Builders<User>.Filter.Eq(user => user.Id, userId);
+        var update = Builders<User>.Update.Push(user => user.Decks, deckId);
+        var result = await _collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
+        
+        return result.MatchedCount > 0;
     }
 }

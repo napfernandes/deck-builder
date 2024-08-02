@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace DeckBuilder.Api.Services;
 
-public class DeckCreationService(IMongoDatabase database, CardService cardService)
+public class DeckCreationService(IMongoDatabase database, CardService cardService, UserService userService)
 {
     private readonly IMongoCollection<Deck> _collection = database.GetCollection<Deck>(Collections.Decks);
 
@@ -49,6 +49,7 @@ public class DeckCreationService(IMongoDatabase database, CardService cardServic
         };
 
         await _collection.InsertOneAsync(deck, null, cancellationToken);
+        await userService.AddDeckToUser(input.CreatedBy!, deck.Id, cancellationToken);
 
         return new CreateDeckOutput(deck.Id);
     }

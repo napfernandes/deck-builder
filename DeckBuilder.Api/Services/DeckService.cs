@@ -1,11 +1,11 @@
 using DeckBuilder.Api.Enums;
 using DeckBuilder.Api.Exceptions;
+using DeckBuilder.Api.Helpers;
 using DeckBuilder.Api.Models;
 using DeckBuilder.Api.ViewModels;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
 namespace DeckBuilder.Api.Services;
 
@@ -15,6 +15,10 @@ public class DeckService(IMongoDatabase database)
     
     public async ValueTask<IEnumerable<DeckOutput>> SearchDecks(CancellationToken cancellationToken)
     {
+        var listOutput = CacheManager.GetItem<IEnumerable<DeckOutput>>(CacheKeys.DecksList);
+        if (listOutput is not null)
+            return listOutput;
+        
         var pipeline = new[]
         {
             DeckServiceDocumentHelpers.LookupCreatedByUsers(),
@@ -26,11 +30,20 @@ public class DeckService(IMongoDatabase database)
             .Aggregate<BsonDocument>(pipeline, cancellationToken: cancellationToken)
             .ToListAsync(cancellationToken);
 
-        return result.Select(deck => BsonSerializer.Deserialize<DeckOutput>(deck.ToBsonDocument()));
+        var convertedList = result.Select(deck => BsonSerializer.Deserialize<DeckOutput>(deck.ToBsonDocument()));
+        CacheManager.SetItem(CacheKeys.DecksList, convertedList);
+
+        return convertedList;
     }
     
     public async ValueTask<DeckOutput> GetDeckById(string deckId, CancellationToken cancellationToken)
     {
+        var cacheKey = CacheKeys.DeckById(deckId);
+        
+        var deckOutput = CacheManager.GetItem<DeckOutput?>(cacheKey);
+        if (deckOutput is not null)
+            return deckOutput;
+        
         var pipeline = new[]
         {
             DeckServiceDocumentHelpers.MatchById(deckId),
@@ -46,7 +59,10 @@ public class DeckService(IMongoDatabase database)
         if (result is null)
             throw KnownException.DeckNotFound(deckId);
         
-        return BsonSerializer.Deserialize<DeckOutput>(result.ToBsonDocument());
+        var convertedResult = BsonSerializer.Deserialize<DeckOutput>(result.ToBsonDocument());
+        CacheManager.SetItem(cacheKey, convertedResult);
+
+        return convertedResult;
     }
 }
 

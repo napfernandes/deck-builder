@@ -26,7 +26,7 @@ public static class UserRoutes
         
         users
             .MapPost("login", async ([FromBody] CredentialsInput input, UserService service, CancellationToken cancellationToken)
-                => await service.LoginWithCredentails(input, cancellationToken))
+                => await service.LoginWithCredentials(input, cancellationToken))
             .WithName("login")
             .WithDescription("Login with user credentials")
             .WithOpenApi();

@@ -34,5 +34,5 @@ public class User
     public DateTime? UpdatedAt { get; init; }
 
     [BsonElement("decks")]
-    public IEnumerable<string> Decks { get; init; } = [];
+    public IEnumerable<string>? Decks { get; init; } = [];
 }
