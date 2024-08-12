@@ -23,5 +23,13 @@ public static class SetRoutes
             .WithName("getCardBySetAndCode")
             .WithDescription("Get a card by its set code and the card code itself")
             .WithOpenApi();
+        
+        sets
+            .MapGet("/{setCode}/packs/generate", async (string setCode, CardService service, CancellationToken cancellationToken) =>
+                await service.GenerateRandomPackForSet(setCode, cancellationToken))
+            .RequireAuthorization()
+            .WithName("generateRandomPackForSet")
+            .WithDescription("Generate a random pack of cards from a given set")
+            .WithOpenApi();
     }
 }

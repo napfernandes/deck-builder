@@ -1,11 +1,11 @@
 ﻿version: '3.8'
 
 services:
-  deckbuilder.api:
-    image: deckbuilder.api
-    build:
-      context: .
-      dockerfile: DeckBuilder.Api/Dockerfile
+#  deckbuilder.api:
+#    image: deckbuilder.api
+#    build:
+#      context: .
+#      dockerfile: DeckBuilder.Api/Dockerfile
 
   mongodb:
     image: mongo:6-jammy

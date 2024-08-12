@@ -1,8 +1,12 @@
+using System.Text;
 using DeckBuilder.Api.Configurations;
 using DeckBuilder.Api.Exceptions;
 using DeckBuilder.Api.Routes;
 using DeckBuilder.Api.Services;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Events;
 
@@ -11,7 +15,51 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Deck Builder API",
+        Description = "Deck builder API implementation",
+        TermsOfService = new Uri("http://www.deckbuilder.com"),
+        Contact = new OpenApiContact
+        {
+            Name = "Nicolas Fernandes",
+            Email = "nicolaspfernandes@outlook.com",
+            Url = new Uri("http://www.napfsolutions.com")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Free License",
+            Url = new Uri("http://www.napfsolutions.com")
+        }
+    });
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JSON Web Token based security",
+    });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 
 var configuration = builder.Configuration
     .AddJsonFile("appsettings.json", false, true)
@@ -24,6 +72,7 @@ var mongoConfiguration = new MongoConfiguration(configuration);
 
 builder.Services.AddSingleton(jwtConfiguration);
 builder.Services.AddSingleton(mongoConfiguration);
+builder.Services.AddSingleton<IMemoryCache>(_ => new MemoryCache(new MemoryCacheOptions()));
 builder.Services.AddScoped<CardService>();
 builder.Services.AddScoped<DeckService>();
 builder.Services.AddScoped<UserService>();
@@ -46,10 +95,26 @@ builder.Services.AddScoped<IMongoDatabase>(_ =>
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer(options =>
+    {
+        var secretKeyBytes = Convert.FromBase64String(jwtConfiguration.Secret);
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtConfiguration.Issuer,
+            ValidAudience = jwtConfiguration.Audience,
+            ValidateIssuer = !string.IsNullOrWhiteSpace(jwtConfiguration.Issuer),
+            ValidateAudience = !string.IsNullOrWhiteSpace(jwtConfiguration.Audience),
+            IssuerSigningKey = new SymmetricSecurityKey(secretKeyBytes)
+        };
+    });
 
-builder.Services.AddCors(options =>
+builder.Services.AddCors(corsOptions =>
 {
-    options.AddPolicy("CorsPolicy", policyBuilder =>
+    corsOptions.AddPolicy("CorsPolicy", policyBuilder =>
     {
         policyBuilder
             .AllowAnyOrigin()
@@ -69,6 +134,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseExceptionHandler();
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseCors("CorsPolicy");
 

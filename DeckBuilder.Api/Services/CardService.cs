@@ -39,8 +39,8 @@ public class CardService(IMongoDatabase database)
         
         var pipeline = new[]
         {
-            CardServiceDocumentHelpers.MatchById(cardId),
-            CardServiceDocumentHelpers.ProjectCardWithDetails()
+            CardServiceMongoPipelines.MatchById(cardId),
+            CardServiceMongoPipelines.ProjectCardWithDetails()
         };
 
         var result = await _collection
@@ -66,8 +66,9 @@ public class CardService(IMongoDatabase database)
         
         var pipeline = new[]
         {
-            CardServiceDocumentHelpers.MatchBySetCodeAndCode(setCode, code),
-            CardServiceDocumentHelpers.ProjectCardWithDetails()
+            CardServiceMongoPipelines.MatchBySetCode(setCode),
+            CardServiceMongoPipelines.MatchByCode(code),
+            CardServiceMongoPipelines.ProjectCardWithDetails()
         };
         
         var result = await _collection
@@ -93,8 +94,8 @@ public class CardService(IMongoDatabase database)
 
         var pipeline = new[]
         {
-            CardServiceDocumentHelpers.MatchBySet(setCode),
-            CardServiceDocumentHelpers.ProjectCardWithDetails()
+            CardServiceMongoPipelines.MatchBySet(setCode),
+            CardServiceMongoPipelines.ProjectCardWithDetails()
         };
         
         var results = await _collection
@@ -122,12 +123,31 @@ public class CardService(IMongoDatabase database)
 
         if (!string.IsNullOrWhiteSpace(query))
         {
-            var regex = new Regex(query, RegexOptions.IgnoreCase);
-            collection = collection.Where(c =>
-                c.Attributes.Any(a => a.Searchable &&
-                   a.Values != null && a.Values.Any() ?
-                    a.Values.Any(v => regex.IsMatch(v))
-                    : regex.IsMatch(a.Value!)));
+            var criteria = GetQueryCriteria(query).ToList();
+            if (criteria.Any())
+            {
+                foreach (var item in criteria)
+                {
+                    var regex = new Regex(item.Value, RegexOptions.IgnoreCase);
+                    collection = collection.Where(c =>
+                        c.Attributes.Any(a => a.Searchable && a.Key == item.Key &&
+                            (a.Values != null && a.Values.Any()
+                                ? a.Values.Any(v => regex.IsMatch(v))
+                                : regex.IsMatch(a.Value!)
+                            )
+                        )
+                    );
+                }
+            }
+            else
+            {
+                var regex = new Regex(query, RegexOptions.IgnoreCase);
+                collection = collection.Where(c =>
+                    c.Attributes.Any(a => a.Searchable &&
+                                          a.Values != null && a.Values.Any()
+                        ? a.Values.Any(v => regex.IsMatch(v))
+                        : regex.IsMatch(a.Value!)));
+            }
         }
 
         var result = await collection.ToListAsync(cancellationToken);
@@ -138,13 +158,24 @@ public class CardService(IMongoDatabase database)
 
         return convertedList;
     }
-    
+
+    private static IEnumerable<SearchCriteria> GetQueryCriteria(string query)
+    {
+        var splitQuery = query.Split(",");
+        foreach (var item in splitQuery)
+        {
+            var searchItem = item.Split("=");
+            if (searchItem.Length > 1)
+                yield return new SearchCriteria(searchItem[0], searchItem[1]);
+        }
+    }
+
     public async ValueTask<IEnumerable<CardOutput>> GetCardDetailsByIds(IEnumerable<string> cardIds, CancellationToken cancellationToken)
     {
         var pipeline = new[]
         {
-            CardServiceDocumentHelpers.MatchIdsInArray(cardIds),
-            CardServiceDocumentHelpers.ProjectCardWithDetails()
+            CardServiceMongoPipelines.MatchIdsInArray(cardIds),
+            CardServiceMongoPipelines.ProjectCardWithDetails()
         };
 
         var results = await _collection
@@ -153,113 +184,26 @@ public class CardService(IMongoDatabase database)
 
         return results.Select(c => BsonSerializer.Deserialize<CardOutput>(c.ToBsonDocument()));
     }
+
+    public async ValueTask<PackOutput> GenerateRandomPackForSet(string setCode, CancellationToken cancellationToken)
+    {
+        var pipeline = new List<BsonDocument>
+        {
+            CardServiceMongoPipelines.MatchBySet(setCode),
+            CardServiceMongoPipelines.FacetCardsByRarities()
+        };
+        
+        foreach (var step in CardServiceMongoPipelines.ProjectFacetToRoot())
+            pipeline.Add(step);
+        
+        pipeline.Add(CardServiceMongoPipelines.ProjectCardWithDetails());
+        
+        var results = await _collection
+            .Aggregate<BsonDocument>(pipeline, cancellationToken: cancellationToken)
+            .ToListAsync(cancellationToken);
+
+        return new PackOutput(results.Select(c => BsonSerializer.Deserialize<CardOutput>(c.ToBsonDocument())));
+    }
 }
 
-public static class CardServiceDocumentHelpers
-{
-    public static BsonDocument MatchById(string cardId)
-    {
-        return new BsonDocument
-        {
-            {
-                "$match", new BsonDocument
-                {
-                    { "_id", new ObjectId(cardId) }
-                }
-            }
-        };
-    }
-
-    public static BsonDocument MatchBySetCodeAndCode(string setCode, string code)
-    {
-        return new BsonDocument("$match", new BsonDocument
-        {
-            {
-                "$and", new BsonArray
-                {
-                    new BsonDocument
-                    {
-                        { "attributes.key", "setCode" },
-                        { "attributes.value", setCode }
-                    },
-                    new BsonDocument
-                    {
-                        { "attributes.key", "code" },
-                        { "attributes.value", code }
-                    }
-                }
-            }
-        });
-    }
-    
-    public static BsonDocument MatchBySet(string setCode)
-    {
-        return new BsonDocument
-        {
-            {
-                "$match", new BsonDocument
-                {
-                    { "attributes.key", "setCode" },
-                    { "attributes.value", setCode }
-                }
-            }
-        };
-    }
-    
-    public static BsonDocument MatchIdsInArray(IEnumerable<string> cardIds)
-    {
-        return new BsonDocument
-        {
-            {
-                "$match", new BsonDocument
-                {
-                    {
-                        "_id", new BsonDocument
-                        {
-                            { "$in", new BsonArray(cardIds.Select(id => new ObjectId(id))) }
-                        }
-                    }
-                }
-            }
-        };
-    }
-    
-    public static BsonDocument ProjectCardWithDetails()
-    {
-        return new BsonDocument
-        {
-            {
-                "$project", new BsonDocument
-                {
-                    { "_id", 1 },
-                    { "language", 1 },
-                    {
-                        "attributes", new BsonDocument("$arrayToObject", new BsonDocument("$map", new BsonDocument
-                        {
-                            { "input", "$attributes" },
-                            { "as", "attr" },
-                            {
-                                "in", new BsonArray
-                                {
-                                    new BsonDocument("$toString", "$$attr.key"),
-                                    new BsonDocument("$cond", new BsonDocument
-                                    {
-                                        {
-                                            "if", new BsonDocument("$eq", new BsonArray
-                                            {
-                                                new BsonDocument("$size", "$$attr.values"),
-                                                0
-                                            })
-                                        },
-                                        { "then", "$$attr.value" },
-                                        { "else", "$$attr.values" }
-                                    })
-                                }
-                            }
-                        }))
-                    }
-                }
-            }
-        };
-    }
-}
+public record SearchCriteria(string Key, string Value);

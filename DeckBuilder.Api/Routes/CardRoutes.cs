@@ -1,4 +1,3 @@
-using DeckBuilder.Api.Exceptions;
 using DeckBuilder.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
